@@ -1,0 +1,26 @@
+Wish List:
+
+Main Screen
+•	Play button
+•	High score display
+•	How to play button
+
+Game Screen
+•	Display score
+•	Display lives
+•	User controlled spaceship
+•	Aliens 
+•	Alien movement
+•	Difficulty progression
+•	Bullets/ lasers
+•	Collision detection
+•	Sound effects
+
+High Score Screen
+•	List of top 10 high scores
+•	If high score, display score in position and ask to input name
+•	If not high score display score at bottom and send lose message
+
+Rules Screen / How to Play
+•	Rules / how to play text
+•	Back button

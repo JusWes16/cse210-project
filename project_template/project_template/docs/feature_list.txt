@@ -1,0 +1,26 @@
+Feature List:
+
+(2) Main Screen
+•	(2)Play button
+•	(3)High score display
+•	How to play button
+
+(1) Game Screen
+•	(2)Display score
+•	(2)Display lives
+•	(1)User controlled spaceship
+•	(1)Aliens 
+•	(2)Alien movement
+•	(3)Difficulty progression
+•	(1)Bullets/ lasers
+•	(1)Collision detection
+•	(3)Sound effects
+
+(2) High Score Screen
+•	(3)List of top 10 high scores
+•	(3)If high score, display score in position and ask to input name
+•	(3)If not high score display score at bottom and send lose message
+
+(4) Rules Screen / How to Play
+•	(4)Rules / how to play text
+•	(4)Back button
