@@ -25,7 +25,7 @@ The project files and folders are organized as follows:
 ```
 root                    (project root folder)
 +-- docs                (project documentation)
-+-- rename              [src code files - rename for project]
++-- space_invaders      (src code files)
   +-- assets            (program asset files)
   +-- data              (program data files)
   +-- game              (program game files)
