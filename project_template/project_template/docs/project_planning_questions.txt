@@ -1,0 +1,15 @@
+CSE 210 – Final Project Planning
+
+Section 2 questions:
+
+1)	We are going to be building a recreation of the classic game, space invaders. 
+
+2)	We plan to use python to write the code and we will be using the arcade module 
+    to help with game flow and graphics. 
+    
+3)	See wish_list.txt and feature_list.txt
+
+4)	Our timeline is simply the rest of the semester that we have to work on this. 
+    Every wee it will just be a matter of completing the most important items first 
+    and then moving on to other features once the more important ones are functional. 
+    What we start with will be based on the numbers next to the features in the feature list. 
