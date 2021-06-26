@@ -9,7 +9,6 @@ from game.arcade_output_service import ArcadeOutputService
 
 from game.ship import Ship
 
-
 from game.invaders import Invaders
 import arcade
 
@@ -20,10 +19,6 @@ def main():
 
     ship = Ship()
     cast["ship"] = [ship]
-
-    
-    
-
 
     # create the script {key: tag, value: list}
     script = {}

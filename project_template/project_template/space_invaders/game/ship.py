@@ -5,7 +5,7 @@ import arcade
 
 class Ship(arcade.Sprite):
     def __init__(self):
-        super().__init__(constants.PADDLE_IMAGE)
+        super().__init__(constants.SHIP_IMAGE)
 
         self.center_x = int(constants.MAX_X / 2)
-        self.center_y = int(constants.PADDLE_Y)
+        self.center_y = int(constants.SHIP_Y)
