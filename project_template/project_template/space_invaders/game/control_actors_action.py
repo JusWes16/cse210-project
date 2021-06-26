@@ -26,7 +26,7 @@ class ControlActorsAction(Action):
         Args:
             cast (dict): The game actors {key: tag, value: list}.
         """
-        direction = self._input_service.get_direction().scale(constants.PADDLE_MOVE_SCALE)
-        paddle = cast["paddle"][0] # there's only one in the cast
-        paddle.change_x = direction.get_x()
-        paddle.change_y = direction.get_y()
+        direction = self._input_service.get_direction().scale(constants.SHIP_MOVE_SCALE)
+        ship = cast["ship"][0] # there's only one in the cast
+        ship.change_x = direction.get_x()
+        ship.change_y = direction.get_y()

@@ -29,16 +29,9 @@ class DrawActorsAction(Action):
         """
         self._output_service.clear_screen()
 
-        bricks = cast["bricks"]
 
-        for brick in bricks:
-            self._output_service.draw_actor(brick)
-
-        for ball in cast["balls"]:
-            self._output_service.draw_actor(ball)
-
-        paddle = cast["paddle"][0] # there's only one
-        self._output_service.draw_actor(paddle)
+        ship = cast["ship"][0] # there's only one
+        self._output_service.draw_actor(ship)
 
         self._output_service.flush_buffer()
 
