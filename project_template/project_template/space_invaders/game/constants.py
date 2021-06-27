@@ -14,8 +14,8 @@ ALIEN_WIDTH = 25
 ALIEN_HEIGHT = 15
 ALIEN_SPACE = 10
 
-LASER_IMAGE = "project_template/project_template/space_invaders/assets/images/laser.png"
-SHIP_IMAGE = "project_template/project_template/space_invaders/assets/images/spaceship.png"
-ALIEN_IMAGE = "project_template/project_template/space_invaders/assets/images/alien.png"
+LASER_IMAGE = "project_template/space_invaders/assets/images/laser.png"
+SHIP_IMAGE = "project_template/space_invaders/assets/images/spaceship.png"
+ALIEN_IMAGE = "project_template/space_invaders/assets/images/alien.png"
 
 
