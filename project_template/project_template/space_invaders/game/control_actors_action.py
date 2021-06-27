@@ -26,6 +26,7 @@ class ControlActorsAction(Action):
         Args:
             cast (dict): The game actors {key: tag, value: list}.
         """
+        self._input_service.shoot_laser(cast)
         direction = self._input_service.get_direction().scale(constants.SHIP_MOVE_SCALE)
         ship = cast["ship"][0] # there's only one in the cast
         ship.change_x = direction.get_x()

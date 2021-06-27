@@ -29,9 +29,17 @@ class DrawActorsAction(Action):
         """
         self._output_service.clear_screen()
 
+        aliens = cast["aliens"]
+
+        for alien in aliens:
+            self._output_service.draw_actor(alien)
+
+        for laser in cast["lasers"]:
+            self._output_service.draw_actor(laser)
 
         ship = cast["ship"][0] # there's only one
         self._output_service.draw_actor(ship)
 
         self._output_service.flush_buffer()
+
 
