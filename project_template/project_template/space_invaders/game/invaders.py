@@ -5,7 +5,7 @@ class Invaders(arcade.Window):
     def __init__(self, cast, script, input_service):
         """Initialize the game
         """
-        super().__init__(constants.MAX_X, constants.MAX_Y, "Batter")
+        super().__init__(constants.MAX_X, constants.MAX_Y, "Space Invaders")
 
         self._cast = cast
         self._script = script
