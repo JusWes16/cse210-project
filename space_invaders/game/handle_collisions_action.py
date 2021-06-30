@@ -15,11 +15,25 @@ class HandleCollisionsAction(Action):
             cast (dict): The game actors {key: tag, value: list}.
         """
         lasers = cast['lasers']
+        ship = cast['ship'][0]
+
+        self._handle_walls_collision(ship)
 
         for laser in cast["lasers"]:
-            
             aliens = cast["aliens"]
             self._handle_alien_collision(lasers, laser, aliens)
+    
+    def _handle_walls_collision(self, ship):
+        if ship.center_x < 20:
+            ship.center_x = 20
+        elif ship.center_x > 780:
+            ship.center_x = 780
+        
+        if ship.center_y < 20:
+            ship.center_y = 20
+        elif ship.center_y > 200:
+            ship.center_y = 200
+        
 
     def _handle_alien_collision(self, lasers, laser, aliens):
         laser_to_remove = None
