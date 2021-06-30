@@ -26,9 +26,12 @@ class HandleCollisionsAction(Action):
         alien_to_remove = None
 
         for alien in aliens:
-            if laser.collides_with_sprite(alien):
+            if laser.collides_with_sprite(alien) and laser.change_y > 0:
                 laser_to_remove = laser
                 alien_to_remove = alien
+
+        if laser.center_y < 0:
+            laser_to_remove = laser
         
         if alien_to_remove != None:
             aliens.remove(alien_to_remove)
