@@ -15,9 +15,11 @@ ALIEN_WIDTH = 25
 ALIEN_HEIGHT = 15
 ALIEN_SPACE = 10
 
-LASER_IMAGE = "space_invaders/assets/images/laser.png"
-ALIEN_LASER_IMAGE = "space_invaders/assets/images/alien_laser.png"
-SHIP_IMAGE = "space_invaders/assets/images/spaceship.png"
-ALIEN_IMAGE = "space_invaders/assets/images/alien.png"
+PATH = os.path.dirname(os.path.abspath(__file__))
+
+LASER_IMAGE = os.path.join(PATH, '..', 'assets', 'images', 'laser.png')
+ALIEN_LASER_IMAGE = os.path.join(PATH, '..', 'assets', 'images', 'alien_laser.png')
+SHIP_IMAGE = os.path.join(PATH, '..', 'assets', 'images', 'spaceship.png')
+ALIEN_IMAGE = os.path.join(PATH, '..', 'assets', 'images', 'alien.png')
 
 
