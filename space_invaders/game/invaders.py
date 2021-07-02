@@ -1,29 +1,68 @@
-import arcade
+import random
 from game import constants
+from game.control_actors_action import ControlActorsAction
+from game.draw_actors_action import DrawActorsAction
+from game.handle_collisions_action import HandleCollisionsAction
+from game.move_actors_action import MoveActorsAction
+from game.arcade_input_service import ArcadeInputService
+from game.arcade_output_service import ArcadeOutputService
 
-class Invaders(arcade.Window):
-    def __init__(self, cast, script, input_service):
-        """Initialize the game
-        """
-        super().__init__(constants.MAX_X, constants.MAX_Y, "Space Invaders")
+from game.ship import Ship
+from game.alien import Alien
+from game.laser import Laser
 
-        self._cast = cast
-        self._script = script
-        self._input_service = input_service
+import arcade
 
-    def setup(self):
+class Invaders(arcade.View):
+    def __init__(self):
+        super().__init__()
+
         arcade.set_background_color(arcade.color.BLACK)
+        
+    def setup(self):
+        self._cast = {}
 
+        ship = Ship()
+        self._cast["ship"] = [ship]
+
+        self._cast["lasers"] = []
+        
+        self._cast["aliens"] = []
+        for x in range(constants.ALIEN_WIDTH * 2,
+                    constants.MAX_X - constants.ALIEN_WIDTH * 2,
+                    constants.ALIEN_WIDTH + constants.ALIEN_SPACE):
+            for y in range(int(constants.MAX_Y * .7),
+                        int(constants.MAX_Y * .9),
+                        constants.ALIEN_HEIGHT + constants.ALIEN_SPACE):
+                alien = Alien(x, y)
+                self._cast["aliens"].append(alien)
+
+        # create the script {key: tag, value: list}
+        self._script = {}
+
+        self._input_service = ArcadeInputService()
+        self._output_service = ArcadeOutputService()
+        
+        control_actors_action = ControlActorsAction(self._input_service)
+        move_actors_action = MoveActorsAction()
+        handle_collisions_action = HandleCollisionsAction()
+        draw_actors_action = DrawActorsAction(self._output_service)
+        
+        self._script["input"] = [control_actors_action]
+        self._script["update"] = [move_actors_action, handle_collisions_action]
+        self._script["output"] = [draw_actors_action]
+    
     def on_update(self, delta_time):
         self._cue_action("update")
 
     def on_draw(self):
+        arcade.start_render()
         self._cue_action("output")
-
+    
     def on_key_press(self, symbol, modifiers):
         self._input_service.set_key(symbol, modifiers)
         self._cue_action("input")
-
+    
     def on_key_release(self, symbol, modifiers):
         self._input_service.remove_key(symbol, modifiers)
         self._cue_action("input")

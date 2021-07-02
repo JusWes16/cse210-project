@@ -1,6 +1,8 @@
 from game import constants
 from game.action import Action
 from game.point import Point
+import random
+from game.laser import Laser
 
 class MoveActorsAction(Action):
     """A code template for moving actors. The responsibility of this class of
@@ -24,6 +26,11 @@ class MoveActorsAction(Action):
 
                 if actor.change_x != 0 or actor.change_y != 0:
                     self._move_actor(actor)
+        
+        for alien in cast["aliens"]:
+            if random.randint(0, 450) == 1:
+                laser = Laser(alien.center_x, alien.center_y, True)
+                cast["lasers"].append(laser)
 
     def _move_actor(self, actor):
         """Moves the given actor to its next position according to its 
