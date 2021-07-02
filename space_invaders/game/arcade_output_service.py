@@ -1,5 +1,6 @@
 import sys
 from game import constants
+from game.score import Score
 
 import arcade
 
@@ -43,7 +44,7 @@ class ArcadeOutputService:
         """ 
         for actor in actors:
             self.draw_actor(actor)
-    
+
     def flush_buffer(self):
         """Renders the screen.""" 
         pass
