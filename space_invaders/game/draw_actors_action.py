@@ -1,6 +1,5 @@
 from game.action import Action
 from game import constants
-
 import arcade
 
 class DrawActorsAction(Action):
@@ -30,6 +29,9 @@ class DrawActorsAction(Action):
         self._output_service.clear_screen()
 
         aliens = cast["aliens"]
+
+        arcade.draw_line(10, 40, 790, 40, arcade.color.WHITE)
+        # arcade.draw_text("Score: ", 45, 5, arcade.color.WHITE, font_size=20, anchor_x='center')
 
         for alien in aliens:
             self._output_service.draw_actor(alien)

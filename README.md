@@ -1,4 +1,4 @@
-# [PROGRAM NAME] 
+# Space Invaders
 This program is a recreation of the space invaders game. In this game you will be able to control a spaceship
 as you attempt to kill all of the aliens in space before they destroy your ship.
 
