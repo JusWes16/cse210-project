@@ -1,5 +1,7 @@
 from game.action import Action
 from game import constants
+from game.score import Score
+
 import arcade
 
 class DrawActorsAction(Action):
@@ -19,6 +21,7 @@ class DrawActorsAction(Action):
             _output_service (OutputService): An instance of OutputService.
         """
         self._output_service = output_service
+        self._score = Score()
 
     def execute(self, cast):
         """Executes the action using the given actors.
@@ -41,6 +44,9 @@ class DrawActorsAction(Action):
 
         ship = cast["ship"][0] # there's only one
         self._output_service.draw_actor(ship)
+
+        
+        self._score.draw()
 
         self._output_service.flush_buffer()
 
