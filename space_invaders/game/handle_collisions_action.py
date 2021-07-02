@@ -1,5 +1,7 @@
 import random
 from game.action import Action
+from game.score import Score
+
 
 class HandleCollisionsAction(Action):
     """A code template for handling collisions. The responsibility of this class of objects is to update the game state when actors collide.
@@ -38,11 +40,15 @@ class HandleCollisionsAction(Action):
     def _handle_alien_collision(self, lasers, laser, aliens):
         laser_to_remove = None
         alien_to_remove = None
+        # score = 0
 
         for alien in aliens:
             if laser.collides_with_sprite(alien) and laser.change_y > 0:
                 laser_to_remove = laser
                 alien_to_remove = alien
+
+                # score += 50
+                # Score().get_score(score)
 
         if laser.center_y < 0:
             laser_to_remove = laser

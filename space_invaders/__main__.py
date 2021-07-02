@@ -11,6 +11,7 @@ from game.arcade_output_service import ArcadeOutputService
 from game.ship import Ship
 from game.alien import Alien
 from game.laser import Laser
+from game.score import Score
 
 from game.invaders import Invaders
 import arcade
@@ -23,6 +24,9 @@ def main():
     ship = Ship()
     cast["ship"] = [ship]
 
+    # score = Score()
+    # cast["score"] = [score]
+
     cast["lasers"] = []
     
     cast["aliens"] = []
@@ -34,7 +38,6 @@ def main():
                     constants.ALIEN_HEIGHT + constants.ALIEN_SPACE):
             alien = Alien(x, y)
             cast["aliens"].append(alien)
-
 
 
     # create the script {key: tag, value: list}
