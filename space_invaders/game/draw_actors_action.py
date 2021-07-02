@@ -33,6 +33,9 @@ class DrawActorsAction(Action):
 
         aliens = cast["aliens"]
 
+        arcade.draw_line(10, 40, 790, 40, arcade.color.WHITE)
+        # arcade.draw_text("Score: ", 45, 5, arcade.color.WHITE, font_size=20, anchor_x='center')
+
         for alien in aliens:
             self._output_service.draw_actor(alien)
 
@@ -44,8 +47,6 @@ class DrawActorsAction(Action):
 
         
         self._score.draw()
-
-        # arcade.draw_text('Test', constants.SCORE_X, constants.SCORE_Y, arcade.color.GREEN, 18)
 
         self._output_service.flush_buffer()
 

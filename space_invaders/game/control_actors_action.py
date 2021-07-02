@@ -34,8 +34,3 @@ class ControlActorsAction(Action):
         ship = cast["ship"][0] # there's only one in the cast
         ship.change_x = direction.get_x()
         ship.change_y = direction.get_y()
-
-        for alien in cast["aliens"]:
-            if random.randint(0, 80) == 1:
-                laser = Laser(alien.center_x, alien.center_y, True)
-                cast["lasers"].append(laser)
