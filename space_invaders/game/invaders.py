@@ -18,7 +18,17 @@ class Invaders(arcade.View):
         super().__init__()
 
         arcade.set_background_color(arcade.color.BLACK)
-        
+    
+    def create_aliens(self, difficulty):
+        for i in range(constants.ALIEN_WIDTH * 2,
+                    constants.MAX_X - constants.ALIEN_WIDTH * 2,
+                    constants.ALIEN_WIDTH + constants.ALIEN_SPACE):
+            for j in range(difficulty):
+                y = constants.MAX_Y - (j + 1) * (constants.ALIEN_HEIGHT + constants.ALIEN_SPACE) 
+                alien = Alien(i, y)
+                self._cast["aliens"].append(alien)
+
+
     def setup(self):
         self._cast = {}
 
@@ -28,14 +38,9 @@ class Invaders(arcade.View):
         self._cast["lasers"] = []
         
         self._cast["aliens"] = []
-        for x in range(constants.ALIEN_WIDTH * 2,
-                    constants.MAX_X - constants.ALIEN_WIDTH * 2,
-                    constants.ALIEN_WIDTH + constants.ALIEN_SPACE):
-            for y in range(int(constants.MAX_Y * .7),
-                        int(constants.MAX_Y * .9),
-                        constants.ALIEN_HEIGHT + constants.ALIEN_SPACE):
-                alien = Alien(x, y)
-                self._cast["aliens"].append(alien)
+        
+        self.difficulty = 1
+        self.create_aliens(self.difficulty)
 
         # create the script {key: tag, value: list}
         self._script = {}
@@ -54,6 +59,9 @@ class Invaders(arcade.View):
     
     def on_update(self, delta_time):
         self._cue_action("update")
+        if len(self._cast["aliens"]) == 0:
+            self.difficulty += 1
+            self.create_aliens(self.difficulty)
 
     def on_draw(self):
         arcade.start_render()
