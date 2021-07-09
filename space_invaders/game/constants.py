@@ -1,4 +1,5 @@
 import os
+import arcade
 
 MAX_X = 800
 MAX_Y = 600
@@ -37,5 +38,29 @@ INVADER_KILLED = os.path.join(PATH, '..', 'assets', 'sounds', 'invaderkilled.wav
 LASER_SHOOT = os.path.join(PATH, '..', 'assets', 'sounds', 'shoot.wav')
 MUSIC = os.path.join(PATH, '..', 'assets', 'sounds', 'spaceinvaders1.mpeg')
 
+PARTICLE_GRAVITY = 0.05
+PARTICLE_FADE_RATE = 8
+
+PARTICLE_MIN_SPEED = 2.5
+PARTICLE_SPEED_RANGE = 2.5
+
+PARTICLE_COUNT = 20
+
+PARTICLE_RADIUS = 3
+
+PARTICLE_COLORS = [arcade.color.ALIZARIN_CRIMSON,
+                   arcade.color.COQUELICOT,
+                   arcade.color.LAVA,
+                   arcade.color.KU_CRIMSON,
+                   arcade.color.DARK_TANGERINE]
 
 
+PARTICLE_SPARKLE_CHANCE = 0.02
+
+SMOKE_START_SCALE = 0.25
+SMOKE_EXPANSION_RATE = 0.03
+
+SMOKE_FADE_RATE = 7
+SMOKE_RISE_RATE = 0.5
+
+SMOKE_CHANCE = 0.25
