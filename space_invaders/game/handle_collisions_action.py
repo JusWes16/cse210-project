@@ -45,6 +45,10 @@ class HandleCollisionsAction(Action):
         laser_to_remove = None
         alien_to_remove = None
         invader_killed = arcade.load_sound(constants.INVADER_KILLED)
+        ship_hit = arcade.load_sound(constants.SHIP_HIT)
+
+        
+
 
         for alien in aliens:
             if laser.collides_with_sprite(alien) and laser.change_y > 0:
@@ -56,6 +60,8 @@ class HandleCollisionsAction(Action):
         if laser.collides_with_sprite(ship) and laser.change_y < 0:
             ship._lives -= 1
             laser_to_remove = laser
+            arcade.play_sound(ship_hit)
+            
 
         if laser.center_y < 45 or laser.center_y > constants.MAX_Y:
             laser_to_remove = laser

@@ -8,11 +8,17 @@ class GameOverView(arcade.View):
         self.texture= arcade.load_texture(constants.GAME_OVER_IMAGE)
 
         arcade.set_viewport(0, constants.SCREEN_WIDTH - 1, 0, constants.SCREEN_HEIGHT - 1)
+        game_over = arcade.load_sound(constants.GAME_OVER)
+        arcade.play_sound(game_over)
     
     def on_draw(self):
         arcade.start_render()
         self.texture.draw_sized(constants.SCREEN_WIDTH / 2, constants.SCREEN_HEIGHT / 2, constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT)
         arcade
+        
+
+
+
 
     def on_mouse_press(self, _x, _y, _button, _modifiers):
         game_view = game.main_view.MainView()
