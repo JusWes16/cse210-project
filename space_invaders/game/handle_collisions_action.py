@@ -2,6 +2,7 @@ import random
 from game.action import Action
 from game import constants
 from game.smoke import Smoke
+from game.particle import Particle
 import arcade
 
 class HandleCollisionsAction(Action):
@@ -59,6 +60,10 @@ class HandleCollisionsAction(Action):
             smoke = Smoke(50)
             smoke.position = ship.position
             self.explosions_list.append(smoke)
+            for i in range(constants.PARTICLE_COUNT):
+                    particle = Particle(self.explosions_list)
+                    particle.position = ship.position
+                    self.explosions_list.append(particle)
             ship.center_x = int(constants.MAX_X / 2)
             ship.center_y = int(constants.SHIP_Y)
 
