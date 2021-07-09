@@ -21,6 +21,15 @@ class Invaders(arcade.View):
 
         self.texture= arcade.load_texture(constants.SPACE_IMAGE2)
         self.explosions_list = None
+    
+    def create_aliens(self, difficulty):
+            for i in range(constants.ALIEN_WIDTH * 2,
+                    constants.MAX_X - constants.ALIEN_WIDTH * 2,
+                    constants.ALIEN_WIDTH + constants.ALIEN_SPACE):
+                for j in range(difficulty):
+                    y = constants.MAX_Y - (j + 1) * (constants.ALIEN_HEIGHT + constants.ALIEN_SPACE) 
+                    alien = Alien(i, y)
+                    self._cast["aliens"].append(alien)
         
     def setup(self):
         self.explosions_list = arcade.SpriteList()
@@ -35,14 +44,12 @@ class Invaders(arcade.View):
         self._score = Score()  
         
         self._cast["aliens"] = []
-        for x in range(constants.ALIEN_WIDTH * 2,
-                    constants.MAX_X - constants.ALIEN_WIDTH * 2,
-                    constants.ALIEN_WIDTH + constants.ALIEN_SPACE):
-            for y in range(int(constants.MAX_Y * .7),
-                        int(constants.MAX_Y * .9),
-                        constants.ALIEN_HEIGHT + constants.ALIEN_SPACE):
-                alien = Alien(x, y)
-                self._cast["aliens"].append(alien)
+
+        self.difficulty = 1
+        self.create_aliens(self.difficulty)
+
+        
+        
 
         # create the script {key: tag, value: list}
         self._script = {}
@@ -63,6 +70,9 @@ class Invaders(arcade.View):
         self.explosions_list.update()
         self._cue_action("update")
         ship = self._cast['ship'][0]
+        if len(self._cast["aliens"]) == 0:
+            self.difficulty += 1
+            self.create_aliens(self.difficulty)
         if ship._lives == 0:
             view = GameOverView()
             self.window.show_view(view)
