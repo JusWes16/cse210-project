@@ -27,8 +27,11 @@ LASER_IMAGE = os.path.join(PATH, '..', 'assets', 'images', 'laser.png')
 ALIEN_LASER_IMAGE = os.path.join(PATH, '..', 'assets', 'images', 'alien_laser.png')
 SHIP_IMAGE = os.path.join(PATH, '..', 'assets', 'images', 'spaceship.png')
 ALIEN_IMAGE1 = os.path.join(PATH, '..', 'assets', 'images', 'alien.png')
-ALIEN_IMAGE2 = os.path.join(PATH, '..', 'assets', 'images', 'alien2.png')
+ALIEN_IMAGE2 = os.path.join(PATH, '..', 'assets', 'images', 'alien.png')
 ALIEN_IMAGE3 = os.path.join(PATH, '..', 'assets', 'images', 'alien3.png')
 ALIEN_IMAGE4 = os.path.join(PATH, '..', 'assets', 'images', 'alien4.png')
+GAME_OVER_IMAGE = os.path.join(PATH, '..', 'assets', 'images', 'game_over.png')
+SPACE_IMAGE = os.path.join(PATH, '..', 'assets', 'images', 'space.png')
+SPACE_IMAGE2 = os.path.join(PATH, '..', 'assets', 'images', 'space2.png')
 
 
