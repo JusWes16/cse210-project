@@ -6,6 +6,8 @@ from game.handle_collisions_action import HandleCollisionsAction
 from game.move_actors_action import MoveActorsAction
 from game.arcade_input_service import ArcadeInputService
 from game.arcade_output_service import ArcadeOutputService
+from game.game_over_view import GameOverView
+from game.score import Score
 
 from game.ship import Ship
 from game.alien import Alien
@@ -17,7 +19,7 @@ class Invaders(arcade.View):
     def __init__(self):
         super().__init__()
 
-        arcade.set_background_color(arcade.color.BLACK)
+        self.texture= arcade.load_texture(constants.SPACE_IMAGE2)
     
     def create_aliens(self, difficulty):
         for i in range(constants.ALIEN_WIDTH * 2,
@@ -28,7 +30,7 @@ class Invaders(arcade.View):
                 alien = Alien(i, y)
                 self._cast["aliens"].append(alien)
 
-
+                
     def setup(self):
         self._cast = {}
 
@@ -36,6 +38,8 @@ class Invaders(arcade.View):
         self._cast["ship"] = [ship]
 
         self._cast["lasers"] = []
+        
+        self._score = Score()  
         
         self._cast["aliens"] = []
         
@@ -50,8 +54,8 @@ class Invaders(arcade.View):
         
         control_actors_action = ControlActorsAction(self._input_service)
         move_actors_action = MoveActorsAction()
-        handle_collisions_action = HandleCollisionsAction()
-        draw_actors_action = DrawActorsAction(self._output_service)
+        handle_collisions_action = HandleCollisionsAction(self._score)
+        draw_actors_action = DrawActorsAction(self._output_service, self._score, self.texture)
         
         self._script["input"] = [control_actors_action]
         self._script["update"] = [move_actors_action, handle_collisions_action]
@@ -59,6 +63,12 @@ class Invaders(arcade.View):
     
     def on_update(self, delta_time):
         self._cue_action("update")
+
+        ship = self._cast['ship'][0]
+        if ship._lives == 0:
+            view = GameOverView()
+            self.window.show_view(view)
+
         if len(self._cast["aliens"]) == 0:
             self.difficulty += 1
             self.create_aliens(self.difficulty)
