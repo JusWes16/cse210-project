@@ -20,18 +20,11 @@ class Invaders(arcade.View):
         super().__init__()
 
         self.texture= arcade.load_texture(constants.SPACE_IMAGE2)
-    
-    def create_aliens(self, difficulty):
-        for i in range(constants.ALIEN_WIDTH * 2,
-                    constants.MAX_X - constants.ALIEN_WIDTH * 2,
-                    constants.ALIEN_WIDTH + constants.ALIEN_SPACE):
-            for j in range(difficulty):
-                y = constants.MAX_Y - (j + 1) * (constants.ALIEN_HEIGHT + constants.ALIEN_SPACE) 
-                alien = Alien(i, y)
-                self._cast["aliens"].append(alien)
-
-                
+        self.explosions_list = None
+        
     def setup(self):
+        self.explosions_list = arcade.SpriteList()
+
         self._cast = {}
 
         ship = Ship()
@@ -42,9 +35,14 @@ class Invaders(arcade.View):
         self._score = Score()  
         
         self._cast["aliens"] = []
-        
-        self.difficulty = 1
-        self.create_aliens(self.difficulty)
+        for x in range(constants.ALIEN_WIDTH * 2,
+                    constants.MAX_X - constants.ALIEN_WIDTH * 2,
+                    constants.ALIEN_WIDTH + constants.ALIEN_SPACE):
+            for y in range(int(constants.MAX_Y * .7),
+                        int(constants.MAX_Y * .9),
+                        constants.ALIEN_HEIGHT + constants.ALIEN_SPACE):
+                alien = Alien(x, y)
+                self._cast["aliens"].append(alien)
 
         # create the script {key: tag, value: list}
         self._script = {}
@@ -54,24 +52,20 @@ class Invaders(arcade.View):
         
         control_actors_action = ControlActorsAction(self._input_service)
         move_actors_action = MoveActorsAction()
-        handle_collisions_action = HandleCollisionsAction(self._score)
-        draw_actors_action = DrawActorsAction(self._output_service, self._score, self.texture)
+        handle_collisions_action = HandleCollisionsAction(self._score, self.explosions_list)
+        draw_actors_action = DrawActorsAction(self._output_service, self._score, self.texture, self.explosions_list)
         
         self._script["input"] = [control_actors_action]
         self._script["update"] = [move_actors_action, handle_collisions_action]
         self._script["output"] = [draw_actors_action]
     
     def on_update(self, delta_time):
+        self.explosions_list.update()
         self._cue_action("update")
-
         ship = self._cast['ship'][0]
         if ship._lives == 0:
             view = GameOverView()
             self.window.show_view(view)
-
-        if len(self._cast["aliens"]) == 0:
-            self.difficulty += 1
-            self.create_aliens(self.difficulty)
 
     def on_draw(self):
         arcade.start_render()
