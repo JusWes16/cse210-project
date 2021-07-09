@@ -1,6 +1,7 @@
 from game.laser import Laser
 import sys
 from game.point import Point
+from game import constants
 
 import arcade
 
@@ -53,5 +54,8 @@ class ArcadeInputService:
             y = ship.center_y
             laser = Laser(x, y)
             cast["lasers"].append(laser) 
+            laser_shoot = arcade.load_sound(constants.LASER_SHOOT)
+            arcade.play_sound(laser_shoot)
+
         else:
             pass
