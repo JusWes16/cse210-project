@@ -12,6 +12,8 @@ class HandleCollisionsAction(Action):
     def __init__(self, score):
         self._score = score
         
+        
+        
     def execute(self, cast):
         """Executes the action using the given actors.
 
@@ -57,12 +59,14 @@ class HandleCollisionsAction(Action):
     def _handle_laser_collision(self, lasers, laser, aliens, ship):
         laser_to_remove = None
         alien_to_remove = None
+        invader_killed = arcade.load_sound(constants.INVADER_KILLED)
 
         for alien in aliens:
             if laser.collides_with_sprite(alien) and laser.change_y > 0:
                 laser_to_remove = laser
                 alien_to_remove = alien
                 self._score.add_points(5)
+                arcade.play_sound(invader_killed)
         
         if laser.collides_with_sprite(ship) and laser.change_y < 0:
             ship._lives -= 1
