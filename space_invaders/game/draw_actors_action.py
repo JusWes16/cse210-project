@@ -14,14 +14,15 @@ class DrawActorsAction(Action):
         _output_service (OutputService): An instance of OutputService.
     """
 
-    def __init__(self, output_service):
+    def __init__(self, output_service, score, texture):
         """The class constructor.
         
         Args:
             _output_service (OutputService): An instance of OutputService.
         """
         self._output_service = output_service
-        self._score = Score()
+        self._score = score
+        self.texture = texture
 
     def execute(self, cast):
         """Executes the action using the given actors.
@@ -31,10 +32,13 @@ class DrawActorsAction(Action):
         """
         self._output_service.clear_screen()
 
+        self.texture.draw_sized(constants.SCREEN_WIDTH / 2, constants.SCREEN_HEIGHT / 2, constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT)
+
         aliens = cast["aliens"]
 
         arcade.draw_line(10, 40, 790, 40, arcade.color.WHITE)
-        # arcade.draw_text("Score: ", 45, 5, arcade.color.WHITE, font_size=20, anchor_x='center')
+        self._score.display_points()
+        arcade.draw_text('Lives:', 630, 7, arcade.color.GREEN, font_size=20)
 
         for alien in aliens:
             self._output_service.draw_actor(alien)
@@ -44,9 +48,6 @@ class DrawActorsAction(Action):
 
         ship = cast["ship"][0] # there's only one
         self._output_service.draw_actor(ship)
-
-        
-        self._score.draw()
 
         self._output_service.flush_buffer()
 

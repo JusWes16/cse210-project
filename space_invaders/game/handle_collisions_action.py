@@ -1,7 +1,7 @@
 import random
 from game.action import Action
-from game.score import Score
-
+from game import constants
+import arcade
 
 class HandleCollisionsAction(Action):
     """A code template for handling collisions. The responsibility of this class of objects is to update the game state when actors collide.
@@ -9,7 +9,9 @@ class HandleCollisionsAction(Action):
     Stereotype:
         Controller
     """
-
+    def __init__(self, score):
+        self._score = score
+        
     def execute(self, cast):
         """Executes the action using the given actors.
 
@@ -23,7 +25,7 @@ class HandleCollisionsAction(Action):
 
         for laser in cast["lasers"]:
             aliens = cast["aliens"]
-            self._handle_alien_collision(lasers, laser, aliens)
+            self._handle_laser_collision(lasers, laser, aliens, ship)
     
     def _handle_walls_collision(self, ship):
         if ship.center_x < 20:
@@ -31,33 +33,35 @@ class HandleCollisionsAction(Action):
         elif ship.center_x > 780:
             ship.center_x = 780
         
-        if ship.center_y < 20:
-            ship.center_y = 20
+        if ship.center_y < 65:
+            ship.center_y = 65
         elif ship.center_y > 200:
             ship.center_y = 200
         
 
-    def _handle_alien_collision(self, lasers, laser, aliens):
+    def _handle_laser_collision(self, lasers, laser, aliens, ship):
         laser_to_remove = None
         alien_to_remove = None
-        # score = 0
 
         for alien in aliens:
             if laser.collides_with_sprite(alien) and laser.change_y > 0:
                 laser_to_remove = laser
                 alien_to_remove = alien
+                self._score.add_points(5)
+        
+        if laser.collides_with_sprite(ship) and laser.change_y < 0:
+            ship._lives -= 1
+            laser_to_remove = laser
 
-                # score += 50
-                # Score().get_score(score)
-
-        if laser.center_y < 0:
+        if laser.center_y < 45 or laser.center_y > constants.MAX_Y:
             laser_to_remove = laser
         
         if alien_to_remove != None:
             aliens.remove(alien_to_remove)
-        
+            
         if laser_to_remove != None:
             lasers.remove(laser_to_remove)
+    
 
     def _is_off_screen(self, laser):
         return laser.center_y < 0
