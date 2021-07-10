@@ -43,14 +43,14 @@ class DrawActorsAction(Action):
         ship = cast["ship"][0] # there's only one
         self._output_service.draw_actor(ship)
 
-        arcade.draw_text(f'Lives: {ship._lives}', 630, 7, arcade.color.GREEN, font_size=20)
+        arcade.draw_text(f'Lives:', 630, 7, arcade.color.GREEN, font_size=20)
 
         for alien in aliens:
             self._output_service.draw_actor(alien)
 
         for laser in cast["lasers"]:
             self._output_service.draw_actor(laser)
-
+            
         self.explosions_list.draw()
 
         self._output_service.flush_buffer()

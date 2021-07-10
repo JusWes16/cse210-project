@@ -20,6 +20,7 @@ class Invaders(arcade.View):
         super().__init__()
 
         self.texture= arcade.load_texture(constants.SPACE_IMAGE2)
+        self.ship_img = arcade.load_texture(constants.SHIP_IMAGE)
         self.explosions_list = None
     
     def create_aliens(self, difficulty):
@@ -48,9 +49,6 @@ class Invaders(arcade.View):
         self.difficulty = 1
         self.create_aliens(self.difficulty)
 
-        
-        
-
         # create the script {key: tag, value: list}
         self._script = {}
 
@@ -59,7 +57,7 @@ class Invaders(arcade.View):
         
         control_actors_action = ControlActorsAction(self._input_service)
         move_actors_action = MoveActorsAction()
-        handle_collisions_action = HandleCollisionsAction(self._score, self.explosions_list)
+        handle_collisions_action = HandleCollisionsAction(self._score, self.explosions_list, self._output_service)
         draw_actors_action = DrawActorsAction(self._output_service, self._score, self.texture, self.explosions_list)
         
         self._script["input"] = [control_actors_action]
@@ -74,12 +72,22 @@ class Invaders(arcade.View):
             self.difficulty += 1
             self.create_aliens(self.difficulty)
         if ship._lives == 0:
-            view = GameOverView()
+            view = GameOverView(self._score)
             self.window.show_view(view)
 
     def on_draw(self):
         arcade.start_render()
         self._cue_action("output")
+        ship = self._cast["ship"][0]
+        if ship._lives == 3:
+            self.ship_img.draw_sized(700, 20, 20, 30)
+            self.ship_img.draw_sized(730, 20, 20, 30)
+            self.ship_img.draw_sized(760, 20, 20, 30)
+        elif ship._lives == 2:
+            self.ship_img.draw_sized(700, 20, 20, 30)
+            self.ship_img.draw_sized(730, 20, 20, 30)
+        elif ship._lives == 1:
+            self.ship_img.draw_sized(700, 20, 20, 30)
     
     def on_key_press(self, symbol, modifiers):
         self._input_service.set_key(symbol, modifiers)
