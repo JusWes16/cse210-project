@@ -37,6 +37,8 @@ SPACE_IMAGE2 = os.path.join(PATH, '..', 'assets', 'images', 'space2.png')
 INVADER_KILLED = os.path.join(PATH, '..', 'assets', 'sounds', 'invaderkilled.wav')
 LASER_SHOOT = os.path.join(PATH, '..', 'assets', 'sounds', 'shoot.wav')
 MUSIC = os.path.join(PATH, '..', 'assets', 'sounds', 'spaceinvaders1.mpeg')
+GAME_OVER = os.path.join(PATH, '..', 'assets', 'sounds', 'gameover3.wav')
+HIT = os.path.join(PATH, '..', 'assets', 'sounds', 'explosion.wav')
 
 PARTICLE_GRAVITY = 0.05
 PARTICLE_FADE_RATE = 8
