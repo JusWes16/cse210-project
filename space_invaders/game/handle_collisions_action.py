@@ -11,9 +11,10 @@ class HandleCollisionsAction(Action):
     Stereotype:
         Controller
     """
-    def __init__(self, score, explosions):
+    def __init__(self, score, explosions, output_service):
         self._score = score
         self.explosions_list = explosions
+        self._output_service = output_service
         
     def execute(self, cast):
         """Executes the action using the given actors.
@@ -66,6 +67,7 @@ class HandleCollisionsAction(Action):
                     self.explosions_list.append(particle)
             ship.center_x = int(constants.MAX_X / 2)
             ship.center_y = int(constants.SHIP_Y)
+            
 
         if laser.center_y < 45 or laser.center_y > constants.MAX_Y:
             laser_to_remove = laser
