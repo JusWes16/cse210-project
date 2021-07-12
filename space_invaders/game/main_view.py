@@ -8,6 +8,8 @@ class MainView(arcade.View):
     def on_show(self):
         arcade.set_viewport(0, constants.SCREEN_WIDTH -1, 0, constants.SCREEN_HEIGHT -1)
         self.texture= arcade.load_texture(constants.SPACE_IMAGE)
+        self.music = arcade.load_sound(constants.MUSIC)
+        self.music_2 = arcade.play_sound(self.music)
     
     def on_draw(self):
         arcade.start_render()
@@ -18,6 +20,7 @@ class MainView(arcade.View):
         arcade.draw_text(f"High Score: {Highscore().get_highscore()}", constants.SCREEN_WIDTH / 2, constants.SCREEN_HEIGHT - 110, arcade.color.RED, font_size=30, anchor_x='center')
     
     def on_mouse_press(self, _x, _y, _button, _modifiers):
+        arcade.stop_sound(self.music_2)
         if _x in range(12, 128) and _y in range(303, 363):
             view = Invaders()
             view.setup()
