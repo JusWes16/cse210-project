@@ -25,7 +25,7 @@ class Invaders(arcade.View):
     
     def create_aliens(self, difficulty):
             for i in range(constants.ALIEN_WIDTH * 2,
-                    constants.MAX_X - constants.ALIEN_WIDTH * 2,
+                    constants.MAX_X - constants.ALIEN_WIDTH,
                     constants.ALIEN_WIDTH + constants.ALIEN_SPACE):
                 for j in range(difficulty):
                     y = constants.MAX_Y - (j + 1) * (constants.ALIEN_HEIGHT + constants.ALIEN_SPACE) 
