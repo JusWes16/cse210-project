@@ -45,4 +45,4 @@ class Highscore(arcade.Sprite):
         return self.highscore
     
     def display_points(self):
-        arcade.draw_text(f'{self._text}', constants.SCREEN_WIDTH / 2 - 150, constants.SCREEN_HEIGHT / 2 - 80, arcade.color.GREEN, font_size=45)
+        arcade.draw_text(f'{self._text}', constants.SCREEN_WIDTH / 2 - 170, constants.SCREEN_HEIGHT / 2 - 80, arcade.color.GREEN, font_size=45)
