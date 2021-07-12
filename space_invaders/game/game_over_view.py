@@ -8,6 +8,9 @@ class GameOverView(arcade.View):
         self.texture= arcade.load_texture(constants.SPACE_IMAGE)
         arcade.set_viewport(0, constants.SCREEN_WIDTH - 1, 0, constants.SCREEN_HEIGHT - 1)
         self._score = score.get_points()
+        game_over = arcade.load_sound(constants.GAME_OVER)
+        arcade.play_sound(game_over)
+        
     
     def on_draw(self):
         arcade.start_render()
@@ -15,6 +18,8 @@ class GameOverView(arcade.View):
         arcade.draw_text("GAME OVER", constants.SCREEN_WIDTH / 2, constants.SCREEN_HEIGHT / 2, arcade.color.GREEN, font_size=50, anchor_x='center')
         arcade.draw_text('Back', 50, 10, arcade.color.WHITE, font_size=30, anchor_x='center')
         arcade.draw_text(f'Score: {self._score}', constants.SCREEN_WIDTH / 2, constants.SCREEN_HEIGHT / 2 - 70, arcade.color.GREEN, font_size=50, anchor_x='center')
+        
+
 
     def on_mouse_press(self, _x, _y, _button, _modifiers):
         if _x in range(10, 90) and _y in range(10, 50):

@@ -61,6 +61,8 @@ class HandleCollisionsAction(Action):
             smoke = Smoke(50)
             smoke.position = ship.position
             self.explosions_list.append(smoke)
+            hit = arcade.load_sound(constants.HIT)
+            arcade.play_sound(hit)
             for i in range(constants.PARTICLE_COUNT):
                     particle = Particle(self.explosions_list)
                     particle.position = ship.position
