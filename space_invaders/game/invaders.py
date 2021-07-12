@@ -8,6 +8,7 @@ from game.arcade_input_service import ArcadeInputService
 from game.arcade_output_service import ArcadeOutputService
 from game.game_over_view import GameOverView
 from game.score import Score
+from game.highscore import Highscore
 
 from game.ship import Ship
 from game.alien import Alien
@@ -72,6 +73,7 @@ class Invaders(arcade.View):
             self.difficulty += 1
             self.create_aliens(self.difficulty)
         if ship._lives == 0:
+            Highscore().new_highscore(self._score.get_points())
             view = GameOverView(self._score)
             self.window.show_view(view)
 
