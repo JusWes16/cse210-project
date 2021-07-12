@@ -17,12 +17,13 @@ from game.laser import Laser
 import arcade
 
 class Invaders(arcade.View):
-    def __init__(self):
+    def __init__(self, music_2):
         super().__init__()
 
         self.texture= arcade.load_texture(constants.SPACE_IMAGE2)
         self.ship_img = arcade.load_texture(constants.SHIP_IMAGE)
         self.explosions_list = None
+        self.music_2 = music_2
     
     def create_aliens(self, difficulty):
             for i in range(constants.ALIEN_WIDTH * 2,
@@ -74,7 +75,7 @@ class Invaders(arcade.View):
             self.create_aliens(self.difficulty)
         if ship._lives == 0:
             Highscore().new_highscore(self._score.get_points())
-            view = GameOverView(self._score)
+            view = GameOverView(self._score, self.music_2)
             self.window.show_view(view)
 
     def on_draw(self):

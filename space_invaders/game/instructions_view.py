@@ -3,6 +3,10 @@ import game.main_view
 from game import constants
 
 class InstructionsView(arcade.View):
+    def __init__(self, music_2):
+        super().__init__()
+        self.music_2 = music_2
+
     def on_show(self):
         arcade.set_viewport(0, constants.SCREEN_WIDTH -1, 0, constants.SCREEN_HEIGHT -1)
         self.texture= arcade.load_texture(constants.SPACE_IMAGE)
@@ -17,6 +21,6 @@ class InstructionsView(arcade.View):
 
     def on_mouse_press(self, _x, _y, _button, _modifiers):
         if _x in range(10, 90) and _y in range(10, 50):
-            view = game.main_view.MainView()
+            view = game.main_view.MainView(False, self.music_2)
             self.window.show_view(view)
     
