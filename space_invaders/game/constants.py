@@ -66,3 +66,5 @@ SMOKE_FADE_RATE = 7
 SMOKE_RISE_RATE = 0.5
 
 SMOKE_CHANCE = 0.25
+
+HS_FILE = os.path.join(PATH, '..', 'data','highscore.txt')
