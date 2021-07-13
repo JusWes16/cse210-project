@@ -18,6 +18,8 @@ class ArcadeInputService:
     def __init__(self):
         """The class constructor."""
         self._keys = []
+        self.laser_shoot = arcade.load_sound(constants.LASER_SHOOT)
+        self.can_shoot = True
     
     def set_key(self, key, modifiers):
         #Ignoring modifies at this point...
@@ -44,18 +46,25 @@ class ArcadeInputService:
         elif arcade.key.DOWN in self._keys or arcade.key.S in self._keys:
             y = -1
 
+        self.will_shoot()
+        
         velocity = Point(x, y)
         return velocity
+
+    def will_shoot(self):
+        if arcade.key.SPACE not in self._keys:
+            self.can_shoot = True
     
     def shoot_laser(self, cast):
         ship = cast["ship"][0]
         if arcade.key.SPACE in self._keys:
-            x = ship.center_x
-            y = ship.center_y
-            laser = Laser(x, y)
-            cast["lasers"].append(laser) 
-            laser_shoot = arcade.load_sound(constants.LASER_SHOOT)
-            arcade.play_sound(laser_shoot)
+            if self.can_shoot:
+                x = ship.center_x
+                y = ship.center_y
+                laser = Laser(x, y)
+                cast["lasers"].append(laser) 
+                arcade.play_sound(self.laser_shoot)
+                self.can_shoot = False
 
         else:
             pass
