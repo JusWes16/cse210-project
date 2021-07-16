@@ -45,6 +45,6 @@ arcade
 ## Authors
 ---
 * Weston Knowlton - kno18012@byui.edu
-* Jake Ard - ard20001@byui
+* Jake Ard - ard20001@byui.edu
 * Trent Barlow - bar17021@byui.edu
 * Caleb Hall - hal20018@byui.edu
