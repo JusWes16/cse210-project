@@ -73,6 +73,8 @@ class Invaders(arcade.View):
         if len(self._cast["aliens"]) == 0:
             self.difficulty += 1
             self.create_aliens(self.difficulty)
+            ship.center_x = int(constants.MAX_X / 2)
+            ship.center_y = int(constants.SHIP_Y)
         if ship._lives == 0:
             Highscore().new_highscore(self._score.get_points())
             view = GameOverView(self._score, self.music_2)
