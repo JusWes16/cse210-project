@@ -57,7 +57,7 @@ class HandleCollisionsAction(Action):
         
         if laser.collides_with_sprite(ship) and laser.change_y < 0:
             ship._lives -= 1
-            laser_to_remove = laser
+            lasers.clear()
             smoke = Smoke(50)
             smoke.position = ship.position
             self.explosions_list.append(smoke)
